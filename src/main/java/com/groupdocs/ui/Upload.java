@@ -24,8 +24,13 @@ public class Upload extends HttpServlet {
             session.setAttribute("source", path);
         }
 
-        // Save the value of Conversion Type for later use.
-        int conversionType = Integer.parseInt(request.getParameter("conversion-type"));
+     // Save the value of Conversion Type for later use.
+        int conversionType = 5;
+        try {
+            conversionType = Integer.parseInt(request.getParameter("conversion-type"));
+        } catch (Exception x) {
+            // Ignore
+        }
         request.getSession().setAttribute("conversion-type", conversionType);
 
         // Redirect to Conversion servlet
