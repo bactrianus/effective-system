@@ -38,11 +38,12 @@
                         <label>
                             Conversion Type
                             <select name="conversion-type">
-                                <option value="2">Words</option>
-                                <option value="3">Html</option>
-                                <option value="4">Pdf</option>
-                                <option value="1">Slides</option>
-                                <option value="0">Text</option>
+                            	<option value="1">Words</option>
+                                <option value="4">Cells</option>
+                                <option value="6">HTML</option>
+                                <option value="5">Image</option>
+                                <option value="2">Pdf</option>
+                                <option value="3">Slides</option>
                             </select>
                         </label>
                         <br/>
