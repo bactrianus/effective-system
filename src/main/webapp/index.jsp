@@ -1,4 +1,8 @@
 <html>
+<head>
+	<title>GroupDocs.Conversion for Java</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
 <body>
 <form action="upload" method="post" enctype="multipart/form-data">
     <div style="padding: 20px 21px 0px 21px;">
