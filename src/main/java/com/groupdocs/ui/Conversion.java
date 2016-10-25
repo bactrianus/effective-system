@@ -38,6 +38,10 @@ public class Conversion extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
     	 // It is assumed that we are redirected here by Upload servlet
+    	
+    	// uncomment to apply license
+    	//Utilities.applyLicenseFromFile();
+    			
         // here so we already know paths of source conversion-type
     	Path source = (Path) request.getSession().getAttribute("source");
     	
@@ -72,10 +76,8 @@ public class Conversion extends HttpServlet {
                 break;
         }
         
-        //Setting conversion configurations
-        ConversionConfig conversionConfig = new ConversionConfig();
-        conversionConfig.setStoragePath(source.getParent().toString());
-        ConversionHandler conversionHandler = new ConversionHandler(conversionConfig);
+        //Inititalizing the Conversion Handler
+        ConversionHandler conversionHandler = new ConversionHandler(Utilities.getConfiguration(source));
     	LoadOptions loadOptions = null;
         
         //Checking output extension
