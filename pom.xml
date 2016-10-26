@@ -28,6 +28,12 @@
     </dependencies>
 
     <build>
+    	<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
         <plugins>
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
@@ -36,10 +42,9 @@
                 <configuration>
                     <httpConnector>
                         <!--host>localhost</host-->
-                        <port>3080</port>
+                        <port>8080</port>
                     </httpConnector>
                 </configuration>
-
             </plugin>
         </plugins>
     </build>
