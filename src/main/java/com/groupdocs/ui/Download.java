@@ -14,7 +14,8 @@ public class Download extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // It is assumed that we are redirected here by Conversion servlet
-        // so we already know path to result file
+        
+    	// so we already know path to result file
         Path result = (Path) request.getSession().getAttribute("result");
         if (result == null) {
             response.sendError(404);

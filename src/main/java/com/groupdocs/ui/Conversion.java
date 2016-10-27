@@ -38,10 +38,14 @@ import java.util.zip.ZipOutputStream;
 
 @WebServlet("/convert")
 public class Conversion extends HttpServlet {
-    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	// It is assumed that we are redirected here by Upload servlet
-    	//Initializing Configuration
+	
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	
+		// It is assumed that we are redirected here by Upload servlet
+    	
+		//Initializing Configuration
     	try{
+    		
     		//Applying License
     		License license = new License();
             if (Files.isReadable(FileSystems.getDefault().getPath(getProjectProperty("license.path")))) {
@@ -145,26 +149,22 @@ public class Conversion extends HttpServlet {
     public void addImagesToZip(List<Path> Pages, Path ZipFile){
     	byte[] buffer = new byte[2048];
     	try{
-    		FileOutputStream fos = new FileOutputStream(ZipFile.toFile());
-        	ZipOutputStream zos = new ZipOutputStream(fos);
-        	for(Path Page : Pages){
-        		
-        		ZipEntry ze= new ZipEntry(Page.getFileName().toString());
-            	zos.putNextEntry(ze);
-
-            	FileInputStream in =
-                           new FileInputStream(Page.toFile());
-
-            	int len;
-            	while ((len = in.read(buffer)) > 0) {
-            		zos.write(buffer, 0, len);
+    		FileOutputStream fileOutputStream = new FileOutputStream(ZipFile.toFile());
+        	ZipOutputStream zipOutputStream = new ZipOutputStream(fileOutputStream);
+        	for(Path Page : Pages){	
+        		ZipEntry zipEntry= new ZipEntry(Page.getFileName().toString());
+            	zipOutputStream.putNextEntry(zipEntry);
+            	FileInputStream fileInputStream = new FileInputStream(Page.toFile());
+            	int length;
+            	while ((length = fileInputStream.read(buffer)) > 0) {
+            		zipOutputStream.write(buffer, 0, length);
             	}
 
-            	in.close();
+            	fileInputStream.close();
         	}
-        	zos.closeEntry();
+        	zipOutputStream.closeEntry();
         	//remember close it
-        	zos.close();
+        	zipOutputStream.close();
     	}
     	catch(IOException ex){
     		ex.printStackTrace();
@@ -173,13 +173,13 @@ public class Conversion extends HttpServlet {
     
     //Getting project properties
     public static String getProjectProperty(String name) {
-        Properties p = new Properties();
-        try (InputStream i = Conversion.class.getResourceAsStream("/project.properties")) {
-            p.load(i);
+        Properties properties = new Properties();
+        try (InputStream inputStream = Conversion.class.getResourceAsStream("/project.properties")) {
+            properties.load(inputStream);
         } catch (IOException e) {
             // Ignore
         }
-        return p.getProperty(name);
+        return properties.getProperty(name);
     }
 }
 

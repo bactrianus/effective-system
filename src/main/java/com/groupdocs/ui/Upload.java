@@ -14,7 +14,8 @@ import java.nio.file.StandardCopyOption;
 public class Upload extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession(true);
+        
+    	HttpSession session = request.getSession(true);
 
         // Save source file to temporary folder and keep the path remembered.
         Part source = request.getPart("source");
